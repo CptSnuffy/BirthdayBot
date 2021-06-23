@@ -6,15 +6,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-def initializeBirthdays(birthdays):
-    birthdayFile = open("d:\Python Projects\BirthdayBot\BirthdayBot\\birthdays.txt")
-    for line in birthdayFile:
-        key, value = line.strip('\n').split(" ",1)
-        birthdays[key] = value
-    birthdayFile.close()
-    return birthdays
+
 def idToName(name,birthdate):
-    idtoNamesFile = open("d:\Python Projects\BirthdayBot\BirthdayBot\idstonames.txt", "a")
+    idtoNamesFile = open("/home/ec2-user/BirthdayBot/idstonames.txt", "a")
     idtoNamesFile.write(name+' '+birthdate+'\n')
     idtoNamesFile.close()
 
@@ -26,7 +20,7 @@ def checkBirthdays():
     print(datetime.today())
     today = str(datetime.today().strftime('%m %d')).split(' ')
     print(today)
-    f = open("d:\Python Projects\BirthdayBot\BirthdayBot\\birthdays.txt",'r')
+    f = open("/home/ec2-user/BirthdayBot/irthdays.txt",'r')
     content = f.read().splitlines()
     for date in range(0,len(content),1):
         print('birthday loop')
@@ -57,11 +51,11 @@ async def on_ready():
     print('Birthday bot is ready')
     called_once_a_day.start()
 
-@tasks.loop(hours=2)
+@tasks.loop(hours=24)
 async def called_once_a_day():
     global birthdayUser
     global date
-    message_channel_id = 854769754714669137
+    message_channel_id = 800119655892779018
     print("day check")
     checkBirthdays()
     print(date)
@@ -74,7 +68,7 @@ async def called_once_a_day():
 @bot.command()
 async def addbirthday(message,*,nameandbirth : str):
     print(nameandbirth)
-    birthdayFile = open("d:\Python Projects\BirthdayBot\BirthdayBot\\birthdays.txt","a")
+    birthdayFile = open("/home/ec2-user/BirthdayBot/birthdays.txt","a")
     birthdayFile.write(nameandbirth+'\n')
     birthdate = nameandbirth.split(" ",1)
     idToName(message.author.name,birthdate[1])
@@ -84,7 +78,7 @@ async def addbirthday(message,*,nameandbirth : str):
 
 @bot.command()
 async def birthdays(ctx):
-    birthdayFile = open("d:\Python Projects\BirthdayBot\BirthdayBot\idstonames.txt", "r")
+    birthdayFile = open("/home/ec2-user/BirthdayBot\idstonames.txt", "r")
     birthdaysList = birthdayFile.read()
     birthdayFile.close()
     print(birthdaysList)

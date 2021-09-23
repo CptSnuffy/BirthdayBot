@@ -8,6 +8,8 @@ Need to change message_channel_id in birthdaybot.py to your target discord chann
 
 Entered birthdays must be in this format to work correctly: @YOURSELF 08/10 (Month/Day)
 
+The included text files are filled with examples. You can just delete them so the file is completely empty (make sure there aren't any extra new lines.) or you can delete the files, they should be generated when you launch the bot.
+
 To use the bat file you need to edit it so that the cd command matches whatever drive letter you have the bot on. For example if you put it on your C: drive the command would be cd C:
 
 I also take commissions for bots. If you are interested in something a little more personalized or have any questions about this bot in particular please add my discord Snuffy#2019
